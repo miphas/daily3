@@ -17,6 +17,37 @@ namespace d0306_01 {
     console.assert(solution([1, 4], 5) === 2, 'case3')
     console.assert(solution([2, 3, 4, 7], 5) === 1, 'case4')
     console.assert(solution([2, 3, 4, 7], 8) === 2, 'case5')
+
+    // 无序数组
+    // f[i][j] 第i位到第j位的和
+    // f[i][j] = f[i - 1][j] + array[i] | f[i][j - 1] + array[j]
+    function s2(array, num) {
+        let f = []
+        let ans = array.length
+        for (let i = 0; i < array.length; i++) {
+            if (num < array[i]) {
+                return 1
+            }
+            f[i] = []
+            f[i][i] = array[i]
+        }
+        for (let i = 0; i < array.length; i++) {
+            for (let j = i + 1; j < array.length; j++) {
+                f[i][j] = f[i][j - 1] + array[j]
+                if (num < f[i][j]) {
+                    ans = Math.min(ans, j - i + 1)
+                }
+            }
+        }
+        return ans
+    }
+
+    console.assert(s2([], 3) === 0, 'case1')
+    console.assert(s2([1, 3, 4], 2) === 1, 'case2')
+    console.assert(s2([1, 3, 5, 2], 6) === 2, 'case3')
+    console.assert(s2([1, 5, 7, 3, 2], 14) === 3, 'case4')
+    console.assert(s2([7, 6, 5, 3, 1], 14) === 3, 'case5')
+    console.assert(s2([1, 3, 5, 7, 11], 16) === 2, 'case6')
 }
 
 namespace d0306_02 {
