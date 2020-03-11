@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="bfc">
+        <div class="bk">
+            <div class="inner"></div>
+        </div>
+        <div class="bk"></div>
+    </div>
+
+    <style>
+        .bfc {
+            overflow: hidden;
+            background: rgba(65, 123, 45, 0.4);
+            border: 20px solid rgba(123, 44, 55, 0.4);
+        }
+        .bk {
+            /* float: left; */
+            margin: 20px;
+            width: 100px; height: 100px;
+            background: rgba(11, 11, 11, 0.4);
+        }
+        .inner {
+            margin: 20px;
+            width: 20px; height: 20px;
+            background: grey;
+        }
+    </style>
+</body>
+</html>
