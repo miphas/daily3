@@ -229,6 +229,19 @@ PS.函数副作用 (会导致 TreeShaking 失效)
 函数如果调用了全局对象或者改变函数外部变量，则说明这个函数有副作用。
 
 
+### scope hosting
+
+引入一次，内联掉，多次，还是有包裹形式
+
+// webpack 4 mode = production 默认打开
++ new webpack.optimize.ModuleConcatenationPlugin()
+
+
+### 动态引入 code split
+
+- require.ensure
+- import() 目前语法不支持，需要 babel 插件转换
+
 ### CSRF 攻击
 
 [CSRF](https://juejin.im/post/5bc009996fb9a05d0a055192#comment)
