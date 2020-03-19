@@ -25,6 +25,7 @@ SeaJS 代表的规范：
 异步加载，与 amd 类似，区别在于   
 - amd 推崇依赖前置，提前执行  
 - cmd 推崇依赖就近，延迟执行  
+- amd 异步加载模块，cmd 可以同步加载 require，也可以异步加载 require.async
 
 ``` javascript
 /** AMD写法 **/
@@ -74,6 +75,46 @@ seajs.use(['math.js'], function(math){
 
 - 1. CommonJS 输出值的拷贝，ES6 Module 输出值的引用
 - 2. CommonJS 运行时记载，ES6 Module 编译时输出接口
+
+``` javascript
+// data.js
+export let data = 'data'
+export function modifyData() {
+    data = 'modified data'
+}
+
+// index.js
+import { data, modifyData } from './lib'
+console.log(data) // data
+modifyData()
+console.log(data) // modified data
+```
+
+``` javascript
+// data.js
+var data = 'data'
+function modifyData() {
+    data = 'modified data'
+}
+
+module.exports = {
+    data: data,
+    modifyData: modifyData
+}
+
+// index.js
+var data = require('./data').data
+var modifyData = require('./data').modifyData
+console.log(data) // data
+modifyData()
+console.log(data) // data
+```
+
+- ES6 module 设计成静态的，保证在编译时模块之间的依赖关系就是确定的，每个模块的输入输出也确定，可以tree shaking
+也有以下问题：
+- import 必须顶置
+- export 导出的变量严格限制类型
+- 变量不允许被重新绑定，import 模块名只能是字符串，不可动态确定依赖
 
 
 ### 关于 script 加载模块

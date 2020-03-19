@@ -245,3 +245,61 @@ PS.函数副作用 (会导致 TreeShaking 失效)
 ### CSRF 攻击
 
 [CSRF](https://juejin.im/post/5bc009996fb9a05d0a055192#comment)
+
+
+### webpack 打包产物
+
+IIFE
+
+``` javascript
+// 通过 IIFE 加载每个模块
+(function(modules){
+  // ...
+})({
+  "./src/hello.js": (function(){
+    // ...
+  }),
+  "./src/index.js": (function() {
+    // ...
+  })
+})
+```
+
+### webpack 按需打包
+
+``` javascript
+rules:[
+            {
+                test: /\.js$/,
+                exclude: /node_modules/, 
+                loader: "babel-loader",
+                options: {
+                    "plugins": [
+                        "dynamic-import-webpack"
+                    ]
+                }
+            }
+        ]
+```
+
+``` javascript
+import('./hello').then(sayHello => {
+    console.log(sayHello('lucas'))
+})
+```
+
+会打包出一个单独的文件来
+- 通过 __webpack_require__.e 实现动态加载
+- 通过 webpackJsonp 实现安装
+
+
+### complier 和 complication
+
+- complier: 它的实例包含了完整的 webpack 配置，全局只有一个 compiler 实例，因此它就像 webpack 的骨架或神经中枢。
+- compilation: 当 webpack 以开发模式运行时，每当检测到文件变化，一个新的 compilation 对象将被创建，保存构建时模块资源、生成资源、文件变化信息等等
+
+
+### loader 和 plugin 差异
+
+- loader 是一个转换器，执行单纯的文件转换操作
+- plugin 是一个扩展器，在 loader 结束后，webpack 打包整个过程中，plugin 并不直接修改文件，而是基于事件工作，通过监听打包过程中的事件，见缝插针，修改打包结果
