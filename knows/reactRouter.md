@@ -85,3 +85,15 @@ const Topic = ({match}) => {
 ### 嵌套子路由
 
 必须有父级路由的相同link
+
+
+### 配合 react-loadable
+
+配合 react-loadable 实现动态加载
+
+``` javascript
+const RedditPage = loadable({
+  loader: () => import('./RedditPage'),
+  loading: () => <div>loading...</div>
+})
+```

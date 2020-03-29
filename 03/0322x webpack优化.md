@@ -56,6 +56,7 @@ plugins: [
 
 指定类库提前打包
 
+``` javascript
 // 单独配置在一个文件中
 // webpack.dll.conf.js
 const path = require('path')
@@ -80,6 +81,7 @@ module.exports = {
     })
   ]
 }
+```
 
 
 ### 代码压缩
@@ -116,4 +118,18 @@ module.exports = {
 
 
 
+### splitChunk
 
+
+### runtimeChunk
+
+- 将 webpack runtime 打包为一个文件，默认每个文件一份[dog]
+
+``` javascript
+    runtimeChunk: "single"
+    // 等价于
+    runtimeChunk: {
+      name: "manifest"
+    }
+
+```

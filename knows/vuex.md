@@ -87,3 +87,27 @@ Object.defineProperties(Store.prototype, {
 });
 export default {Store, install}
 ```
+
+
+
+### vue 中同异步提交变更
+
+``` javascript
+
+const store = new Vuex.Store({
+  state: {
+    count: 0,
+  },
+  mutations: {
+    increment() {
+      this.store.count++
+    }
+  },
+  actions: {
+    setTimeout(() => 
+      this.commit('increment') // 避免直接操作 state
+    },0)
+  },
+  
+})
+```
