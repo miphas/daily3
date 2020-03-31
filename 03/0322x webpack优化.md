@@ -133,3 +133,8 @@ module.exports = {
     }
 
 ```
+
+
+### 分析包大小组成
+
+[BundleAnalyzerPlugin](https://www.npmjs.com/package/webpack-bundle-analyzer)
