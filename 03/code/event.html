@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <div id="inner">inner</div>
+  </div>
+  <script>
+    const inner = document.getElementById('inner')
+    inner.addEventListener('click', (e) => {
+      console.log('bubble')
+      e.stopImmediatePropagation();
+      // e.stopPropagation();
+    })
+    inner.addEventListener('click', (e) => {
+      // e.preventDefault(); 
+      
+      console.log('capture'); 
+      return false
+    }, true)
+    
+    
+    document.body.addEventListener('click', () => {console.log('body-capture')}, true)
+    document.body.addEventListener('click', () => {console.log('body-bubble')}, false)
+  </script>
+</body>
+</html>

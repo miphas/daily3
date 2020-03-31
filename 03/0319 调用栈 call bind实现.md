@@ -8,6 +8,21 @@
 
 // code / 0319x
 
+``` javascript
+Function.prototype.call = function() {
+  const args = [...arguments]
+  const context = args.shift()
+  const fn = this
+  context.__fn = fn
+  const result = context.__fn(...args)
+  delete context.__fn
+  return result
+}
+function fa() {
+  console.log(this.a, ...arguments)
+}
+fa.call({a: 10}, 'other1', 'other2')
+```
 
 ### bind
 

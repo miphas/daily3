@@ -79,11 +79,8 @@ Parent.prototype.getValue = function() {
 function Child(val) {
   Parent.call(this, val)
 }
-Child.prototype = Object.create(Parent.prototype, {
-  constructor: {
-    value: Child
-  }
-})
+Child.prototype = Object.create(Parent.prototype)
+Child.prototype.constructor = Child
 
 const child = new Child(2);
 child.getValue();

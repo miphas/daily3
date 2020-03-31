@@ -73,6 +73,9 @@ webpack 构建出来的 bundle.js 本身是不具备热更新的能力的，HotM
 
 ### 文件指纹设置
 
+hash  
+整个工程生成一个 hash
+
 chunkhash  
 和 webpack 打包的 chunk 有关，  
 不同的 entry 生成不同的 chunkhash值
