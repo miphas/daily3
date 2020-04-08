@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container"></div>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+    <style>
+        .wrapper {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            
+        }
+        .container {
+            background: red;
+            margin: 0 60px;
+            min-width: 100px;
+            height: 200px;
+            box-sizing: border-box;
+        }
+        .left, .right {
+            position: absolute;
+            height: 200px;
+            float: left;
+        }
+        .left {
+            top: 0; left: 0;
+            width: 60px;
+            margin-left: -60rpx;
+            background: black;
+            float: left;
+        }
+        .right {
+            top: 0; right: 0;
+            width: 60px;
+            background: blue;
+        }
+    </style>
+</body>
+</html>
